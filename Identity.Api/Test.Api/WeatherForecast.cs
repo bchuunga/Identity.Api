@@ -1,4 +1,4 @@
-namespace Identity.Api
+namespace Test.Api
 {
     public class WeatherForecast
     {
