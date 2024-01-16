@@ -1,0 +1,47 @@
+@import './variables.scss';
+$theme-color-1: #b84297;
+
+.text-primary {
+  color: #0079c1 !important;
+}
+.bg-primary {
+  background-color: #0079c1 !important;
+}
+a {
+  text-decoration: none;
+}
+
+.card-sidenav {
+  border-radius: 0;
+  .card-header {
+    border-radius: 0;
+    background-color: transparent;
+  }
+}
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: $scrollbar-color #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $scrollbar-tack-bg;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-color;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+
+.navbar.border-bottom,
+.sidebar.border-end,
+.navbar.border-top {
+  border-color: #dee2e66b !important;
+}
