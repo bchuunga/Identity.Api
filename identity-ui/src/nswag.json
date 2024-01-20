@@ -4,11 +4,13 @@
   "documentGenerator": {
     "typesToOpenApi": {
       "classNames": [
-        "Identity.Api.Dtos.UserDto",
-        "Identity.Api.Dtos.RegisterDto",
         "Identity.Api.Dtos.LoginDto",
+        "Identity.Api.Dtos.RegisterDto",
+        "Identity.Api.Dtos.UserDto",
         "Identity.Api.Identity.JwtOptions",
-        "Identity.Api.Models.User"
+        "Identity.Api.Models.User",
+        "Identity.Api.Dtos.CurrentRoute",
+        "Identity.Api.Constants.IdentityAppConsts"
       ],
       "defaultPropertyNameHandling": "CamelCase",
       "defaultReferenceTypeNullHandling": "Null",

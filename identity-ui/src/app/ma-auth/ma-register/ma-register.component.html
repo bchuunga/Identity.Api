@@ -1,1 +1,76 @@
-<p>ma-register works!</p>
+<div
+  class="wrapper d-flex align-items-center justify-content-between w-100 bg-transparent"
+>
+  <div class="row w-100">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="card shadow-sm border-0">
+          <div class="card-header pt-5 bg-transparent border-0">
+            <div class="fs-3 m-0 fw-bold text-center">User Registration</div>
+          </div>
+          <div class="card-body">
+            <input
+              required
+              formControlName="firstName"
+              type="text"
+              class="form-control form-control-lg rounded-5 mb-3"
+              placeholder="First name"
+            />
+            <input
+              required
+              formControlName="lastName"
+              type="text"
+              class="form-control form-control-lg rounded-5 mb-3"
+              placeholder="Last name"
+            />
+            <input
+              required
+              formControlName="email"
+              type="email"
+              class="form-control form-control-lg rounded-5 mb-3"
+              placeholder="example@email.com"
+            />
+            <input
+              required
+              formControlName="password"
+              type="password"
+              placeholder="Password"
+              class="form-control form-control-lg rounded-5 mb-3"
+            />
+            <input
+              required
+              formControlName="confirmPassword"
+              type="password"
+              class="form-control form-control-lg rounded-5 mb-3"
+              placeholder="Confirm password"
+            />
+            <div
+              class="alert alert-danger mb-3"
+              *ngIf="errorMessages.length > 0"
+              role="alert"
+            >
+              <p *ngFor="let error of errorMessages">{{ error }}</p>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0 pb-4">
+            <button
+              type="submit"
+              class="w-100 btn btn-primary btn-lg rounded-5"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              (click)="onReset()"
+              class="w-100 btn btn-light btn-lg rounded-5"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

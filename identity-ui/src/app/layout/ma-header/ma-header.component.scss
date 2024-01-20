@@ -4,4 +4,13 @@
     font-size: 1.7rem;
     font-weight: 600;
   }
+  .nav-item {
+    .nav-link {
+      color: rgba(11, 15, 33, 0.5);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.4s;
+      -webkit-transition: color 0.4s;
+    }
+  }
 }

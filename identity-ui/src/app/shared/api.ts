@@ -16,11 +16,9 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 
-export interface UserDto {
-    firstName?: string | undefined;
-    lastName?: string | undefined;
+export interface LoginDto {
     email?: string | undefined;
-    token?: string | undefined;
+    password?: string | undefined;
 }
 
 export interface RegisterDto {
@@ -31,9 +29,11 @@ export interface RegisterDto {
     confirmPassword: string;
 }
 
-export interface LoginDto {
+export interface UserDto {
+    firstName?: string | undefined;
+    lastName?: string | undefined;
     email?: string | undefined;
-    password?: string | undefined;
+    token?: string | undefined;
 }
 
 export interface JwtOptions {
@@ -67,5 +67,15 @@ export interface User extends IdentityUser {
     firstName: string;
     lastName: string;
     created: Date;
+}
+
+export interface CurrentRoute {
+    previous?: string | undefined;
+    current?: string | undefined;
+}
+
+export interface IdentityAppConsts {
+    currentUser?: string | undefined;
+    currentRoute?: string | undefined;
 }
 

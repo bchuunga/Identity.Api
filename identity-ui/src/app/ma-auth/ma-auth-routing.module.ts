@@ -5,7 +5,7 @@ import { MaRegisterComponent } from './ma-register/ma-register.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: MaLoginComponent,
   },
   {

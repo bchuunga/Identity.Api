@@ -7,6 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [MaWelcomeComponent],
-  imports: [CommonModule, MaWelcomeRoutingModule, SharedModule],
+  imports: [MaWelcomeRoutingModule, SharedModule],
 })
 export class MaWelcomeModule {}
