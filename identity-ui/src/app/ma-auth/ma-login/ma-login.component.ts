@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap } from 'rxjs';
+import { UserDto } from '../../shared/api';
+import { Store } from '@ngrx/store';
+import authActions from '../^state/auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'identity-ui-ma-login',
@@ -15,7 +20,9 @@ export class MaLoginComponent implements OnInit {
 
   constructor(
     private readonly authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private readonly store: Store,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,11 +43,10 @@ export class MaLoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.loginForm.value);
-
     this.authService.login(this.loginForm.value).subscribe(
-      (result) => {
-        this.user = result;
+      (user) => {
+        this.store.dispatch(authActions.login({ user }));
+        this.router.navigateByUrl('/welcome');
       },
       (error) => {
         this.error = error.error;

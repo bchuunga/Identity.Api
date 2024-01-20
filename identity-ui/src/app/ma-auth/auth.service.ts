@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { API_URL } from '../app.module';
 import { HttpClient } from '@angular/common/http';
-import { LoginDto, RegisterDto, UserDto } from '../shared/api';
+import { API_BASE_URL, LoginDto, RegisterDto, UserDto } from '../shared/api';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   constructor(
-    @Inject(API_URL) private baseUrl: string,
+    @Inject(API_BASE_URL) private baseUrl: string,
     private readonly http: HttpClient
   ) {}
 

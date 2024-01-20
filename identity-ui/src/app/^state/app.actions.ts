@@ -1,14 +1,19 @@
 import { createAction, props } from '@ngrx/store';
-import { AppEntity } from './app.models';
+import { CurrentRoute } from '../shared/api';
 
-export const initApp = createAction('[App Page] Init');
-
-export const loadAppSuccess = createAction(
-  '[App/API] Load App Success',
-  props<{ app: AppEntity[] }>()
+export const isMobile = createAction(
+  '[App] Changed Viewport',
+  props<{ isMobile: boolean }>()
 );
 
-export const loadAppFailure = createAction(
-  '[App/API] Load App Failure',
-  props<{ error: any }>()
+export const currentRoute = createAction(
+  '[App] Changed Route',
+  props<{ currentRoute: CurrentRoute }>()
 );
+
+const appActions = {
+  isMobile,
+  currentRoute,
+};
+
+export default appActions;

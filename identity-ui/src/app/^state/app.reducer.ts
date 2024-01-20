@@ -1,38 +1,27 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
-
-import * as AppActions from './app.actions';
 import { AppEntity } from './app.models';
+import { createReducer, on } from '@ngrx/store';
+import appActions from './app.actions';
+import { CurrentRoute } from '../shared/api';
 
-export const APP_FEATURE_KEY = 'app';
+export const appFeatureKey = 'app';
 
-export interface AppState extends EntityState<AppEntity> {
-  selectedId?: string | number; // which App record has been selected
-  loaded: boolean; // has the App list been loaded
-  error?: string | null; // last known error (if any)
+export interface AppState extends AppEntity {
+  isMobile: boolean;
+  currentRoute?: CurrentRoute;
 }
 
-export interface AppPartialState {
-  readonly [APP_FEATURE_KEY]: AppState;
-}
-
-export const appAdapter: EntityAdapter<AppEntity> =
-  createEntityAdapter<AppEntity>();
-
-export const initialAppState: AppState = appAdapter.getInitialState({
-  // set initial required properties
-  loaded: false,
-});
-
-const reducer = createReducer(
+export const initialAppState: AppState = {
+  isMobile: false,
+  currentRoute: undefined,
+};
+export const appReducers = createReducer(
   initialAppState,
-  on(AppActions.initApp, (state) => ({ ...state, loaded: false, error: null })),
-  on(AppActions.loadAppSuccess, (state, { app }) =>
-    appAdapter.setAll(app, { ...state, loaded: true })
-  ),
-  on(AppActions.loadAppFailure, (state, { error }) => ({ ...state, error }))
+  on(appActions.isMobile, (state, action) => ({
+    ...state,
+    isMobile: action.isMobile,
+  })),
+  on(appActions.currentRoute, (state, action) => ({
+    ...state,
+    currentRoute: action.currentRoute,
+  }))
 );
-
-export function appReducer(state: AppState | undefined, action: Action) {
-  return reducer(state, action);
-}

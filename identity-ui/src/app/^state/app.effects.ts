@@ -1,21 +1,25 @@
-import { Injectable, inject } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, catchError, of } from 'rxjs';
-import * as AppActions from './app.actions';
-import * as AppFeature from './app.reducer';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import appActions from './app.actions';
+import { tap } from 'rxjs';
+import { IdentityAppEnums } from '../^enums/identity-app-enums';
 
 @Injectable()
 export class AppEffects {
-  private actions$ = inject(Actions);
+  constructor(private readonly actions$: Actions) {}
 
-  init$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AppActions.initApp),
-      switchMap(() => of(AppActions.loadAppSuccess({ app: [] }))),
-      catchError((error) => {
-        console.error('Error', error);
-        return of(AppActions.loadAppFailure({ error }));
-      })
-    )
+  currentRoute$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(appActions.currentRoute),
+        tap((action) => {
+          sessionStorage.setItem(
+            //IdentityAppEnums.CurrentRoute,
+            'url',
+            JSON.stringify(action.currentRoute)
+          );
+        })
+      ),
+    { dispatch: false }
   );
 }
